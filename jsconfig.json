@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/navigation/*": ["./src/navigation/*"],
+            "@/screens/*": ["./src/navigation/screens/*"],
+            "@/assets/*": ["./src/assets/*"],
+            "@/components/*": ["./src/components/*"],
+            "@config": ["beebot.config.js"]
+        }
+    }
+  }

@@ -1,6 +1,20 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@config": ["beebot.config.js"],
+      "@languages": ["i18n/supportedLanguages.js"],
+      "@src": ["src/"],
+      "src": ["src/"],
+      "component": ["src/components/"],
+      "nav": ["src/navigation/"],
+      "screens": ["src/navigation/screens/"],
+      "style": ["src/style/"],
+      "lib": ["src/lib/"],
+      "asset": ["src/assets/"],
+    }
   }
 }
