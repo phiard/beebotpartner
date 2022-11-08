@@ -52,11 +52,8 @@ const WarrantyInputScreen = ({route, navigation}:any) => {
     const [ voucherAmount, setVoucherAmount ] = useState('');
     const [ voucherLoading, setVoucherLoading ] = useState(false);
 
-    
     const [hasPermission, setHasPermission] = useState<any>(null);
     const [scanned, setScanned] = useState<any>(false);
-
-    const [ chooseMemberFunction, setChooseMemberFunction ] = useState<any>();
     
 
     const handleBackButtonClick = () => {
@@ -402,7 +399,7 @@ const WarrantyInputScreen = ({route, navigation}:any) => {
                                                 (
                                                     <View style={[cs.button, darkMode ? cs.textFieldDark : cs.textFieldLight, {flex:1, minWidth: 0, padding: 10,}]}>
                                                         <View style={[cs.flexRow, {flex:1, justifyContent:'space-between', alignItems:'center'}]}>
-                                                            <View style={{flex:1,}}>
+                                                            <View style={{flex:1, marginLeft:10,}}>
                                                                 <Text>{member.name}</Text>
                                                                 <Text>{member.phone}</Text>
                                                             </View>
@@ -564,9 +561,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 36,
         textTransform: 'uppercase',
-        color: '#f59e0b',
+        color: primaryColor,
     },
-    
     centeredView: {
         justifyContent: "center",
         alignItems: "center",

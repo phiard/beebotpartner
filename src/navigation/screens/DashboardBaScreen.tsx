@@ -85,7 +85,6 @@ const DashboardBaScreen = (props:any) => {
         if(user) {
             getDashboardDataBA();
             getCampaigns();
-            // setLoading(false);
         }
     }, [user]);
 

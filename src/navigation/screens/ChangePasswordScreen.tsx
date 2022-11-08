@@ -186,16 +186,15 @@ const ChangePasswordScreen = ({navigation}:any) => {
             <Snackbar
                 duration={5000}
                 visible={snackbar.visible}
-                style={{backgroundColor: "#fff"}}
+                style={darkMode ? cs.cardDark : cs.cardLight}
                 onDismiss={() => setSnackbar({visible:false,message:''})}
                 action={{
-                    label: 'Close',
-                    onPress: () => {
-                        setSnackbar({visible:false,message:''})
-                    },
+                    icon: 'close',
+                    label: i18n.t('close'),
+                    onPress: () => setSnackbar({visible:false,message:''}),
                 }}
                 >
-                <View><Text>{snackbar.message}</Text></View>
+                <Text style={{color: darkMode ? '#fff' : '#222'}}>{snackbar.message}</Text>
             </Snackbar>
         </>
     );

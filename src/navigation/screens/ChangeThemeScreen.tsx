@@ -26,7 +26,7 @@ const ChangeThemeScreen = ({navigation}:any) => {
     i18n.locale = locale ? locale : Localization.locale;
     i18n.enableFallback = true;
     
-    const changeTheme = async (theme:any, handleComplete:any) => {
+    const changeTheme = async (theme:number, handleComplete:any) => {
       if(user.loggedIn) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
         axios.post('/api/v1/app/change/theme', {theme: theme})
@@ -96,18 +96,15 @@ const ChangeThemeScreen = ({navigation}:any) => {
             <Snackbar
                 duration={5000}
                 visible={snackbar.visible}
-                style={{backgroundColor: darkMode ? '#333' : "#fff"}}
+                style={{backgroundColor: darkMode ? '#222' : "#fff", justifyContent:'center', alignItems:'center',}}
                 onDismiss={() => setSnackbar({visible:false,message:''})}
                 action={{
                     icon: 'close',
-                    color: '#333',
-                    label: '',
-                    onPress: () => {
-                        setSnackbar({visible:false,message:''})
-                    },
+                    label: i18n.t('close'),
+                    onPress: () => setSnackbar({visible:false,message:''}),
                 }}
                 >
-                <View><Text style={{color: darkMode ? '#fff' : '#222'}}>{snackbar.message}</Text></View>
+                <Text style={{color: darkMode ? '#fff' : '#222'}}>{snackbar.message}</Text>
             </Snackbar>
         </View>
     );

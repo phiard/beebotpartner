@@ -23,6 +23,7 @@ export const AuthProvider = (props:any) => {
   const [locale, setLocale] = useState(null);
   const [error, setError] = useState<any>(null);
   const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [ownerAccess, setOwnerAccess] = useState<boolean>(false);
     
   return (
     <AuthContext.Provider
@@ -34,6 +35,8 @@ export const AuthProvider = (props:any) => {
         setLocale,
         darkMode,
         setDarkMode,
+        ownerAccess,
+        setOwnerAccess,
         login: async ({username, password}:loginData, handleComplete:any) => {
           try {
             axios.post('/api/v1/app/login', {
@@ -52,10 +55,7 @@ export const AuthProvider = (props:any) => {
                   email: userData.email,
                   status: userData.status,
                   gankbeebot: userData.gankbeebot,
-                  campaign: userData.campaign,
                   permission: userData.permission,
-                  totalComission: userData.totalComission,
-                  totalUsedVoucher: userData.totalUsedVoucher,
                 }
 
                 setUser(userResponse);
@@ -117,11 +117,8 @@ export const AuthProvider = (props:any) => {
                 name: userData.name,
                 email: userData.email,
                 status: userData.status,
-                campaign: userData.campaign,
                 gankbeebot: userData.gankbeebot,
                 permission: userData.permission,
-                totalComission: userData.totalComission,
-                totalUsedVoucher: userData.totalUsedVoucher,
               }
               const newData = {token:user.token,...userResponse};
               setUser(newData);

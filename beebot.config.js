@@ -3,9 +3,10 @@ module.exports = {
     backendUrl: 'https://beebot.asia',
     appName: 'Beebot Partner',
     description: 'Internally Distributed App for Beebot Partners',
-    version: '1.0.2',
+    version: '1.0.3',
 
     currency: 'IDR',
+    currencyStylized: 'Rp.',
 
     primaryColor: '#f59e0b',
     primaryColorHovered: '#f09906',
@@ -16,5 +17,8 @@ module.exports = {
 
     underlayDark: '#444',
     underlayLight: '#ccc',
+    underlayGray: '#888',
+
+    
   }
   

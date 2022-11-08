@@ -1,6 +1,6 @@
 {
   "name": "beebotpartner",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-native-picker/picker": "2.4.2",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "@types/babel__core": "^7.1.19",

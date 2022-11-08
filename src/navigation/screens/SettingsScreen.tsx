@@ -1,4 +1,4 @@
-import { primaryColor, primaryColorHovered, version } from "@config";
+import { primaryColor, primaryColorHovered, underlayDark, underlayLight, version } from "@config";
 import { Image, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import cs from "src/style/common";
@@ -18,7 +18,7 @@ const Icon = createIconSetFromIcoMoon(
 
 const SettingsScreen = (props:any) => {
     const { navigation } = props;
-    const { user, getUser, logout, locale, darkMode }:any = useContext(AuthContext);
+    const { user, getUser, logout, locale, darkMode, ownerAccess }:any = useContext(AuthContext);
 
     const i18n = new I18n({
         "en": en,
@@ -43,14 +43,13 @@ const SettingsScreen = (props:any) => {
         return true;
     }
 
-
-    const highlightColor = darkMode ? '#333' : '#f7f7f7';
+    const underlayColor = darkMode ? underlayDark : underlayLight;
     const iconColor = darkMode ? '#ccc' : '#333';
 
     return (
         <View style={{display:'flex',flexDirection:'column', flex:1,}}>
             <ScrollView style={{flex:1, marginTop: 10,}}>
-                <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={highlightColor} onPress={()=>{navigation.push(i18n.t('change-language-screen'))}}>
+                <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={underlayColor} onPress={()=>{navigation.push(i18n.t('change-language-screen'))}}>
                     <View style={styles.tileButton}>
                         <Text style={darkMode ? cs.tileTextDark : cs.tileTextLight}>{i18n.t('language')}</Text>
                         <View style={{flexDirection:'row', alignItems:'center'}}>
@@ -59,7 +58,7 @@ const SettingsScreen = (props:any) => {
                         </View>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={highlightColor} onPress={()=>{navigation.push(i18n.t('change-theme-screen'))}}>
+                <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={underlayColor} onPress={()=>{navigation.push(i18n.t('change-theme-screen'))}}>
                     <View style={styles.tileButton}>
                         <Text style={darkMode ? cs.tileTextDark : cs.tileTextLight}>{i18n.t('theme')}</Text>
                         <View style={{flexDirection:'row', alignItems:'center'}}>
@@ -72,10 +71,23 @@ const SettingsScreen = (props:any) => {
                     user.loggedIn ?
                     (
                         <>
-                            <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={highlightColor} onPress={()=>{navigation.push(i18n.t('change-password-screen'))}}>
+                            <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={underlayColor} onPress={()=>{navigation.push(i18n.t('access-screen'))}}>
+                                <View style={styles.tileButton}>
+                                    <Text style={darkMode ? cs.tileTextDark : cs.tileTextLight}>{i18n.t('access')}</Text>
+                                    <View style={{flexDirection:'row', alignItems:'center'}}>
+                                        {
+                                            ownerAccess ? 
+                                            <View style={{height: 15, width: 15, borderRadius: 5, backgroundColor: '#3c3'}}></View>
+                                            : null
+                                        }
+                                        <Icon name="chevron-right" color={iconColor} size={20} />
+                                    </View>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={darkMode ? cs.tileDark : cs.tileLight} underlayColor={underlayColor} onPress={()=>{navigation.push(i18n.t('change-password-screen'))}}>
                                 <View style={styles.tileButton}>
                                     <Text style={darkMode ? cs.tileTextDark : cs.tileTextLight}>{i18n.t('change-password')}</Text>
-                                    <Icon name="chevron-right" color={iconColor} size={20} />
+                                        <Icon name="chevron-right" color={iconColor} size={20} />
                                 </View>
                             </TouchableHighlight>
                             <TouchableHighlight style={[cs.button, {margin:8,}]} onPress={()=>{handleLogout()}} underlayColor={primaryColorHovered}>

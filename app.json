@@ -2,7 +2,7 @@
   "expo": {
     "name": "Beebot Partner",
     "slug": "beebotpartner",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -35,27 +35,33 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "photosPermission": "The app accesses your photos for product installation proof."
         }
       ]
     ],
     "ios": {
-      "buildNumber": "1.0.2",
+      "buildNumber": "1.0.3",
       "supportsTablet": true,
       "bundleIdentifier": "asia.beebot.partner",
       "infoPlist": {
-        "CFBundleAllowMixedLocalizations": true
+        "CFBundleAllowMixedLocalizations": true,
+        "NSLocationWhenInUseUsageDescription": "Your location is used to check closest store from you.",
+        "NSPhotoLibraryUsageDescription": "Your chosen photo is being used for product installation proof.",
+        "NSCameraUsageDescription": "Your camera is being used to take a picture of product installation and scan beebot's product qr code for warranty input purposes.",
       }
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "asia.beebot.partner",
       "permissions": [
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
       ]
     },
     "web": {

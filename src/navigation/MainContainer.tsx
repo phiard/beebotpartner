@@ -30,6 +30,9 @@ import WarrantyInputScreen from './screens/WarrantyInputScreen';
 import WarrantyHistoryScreen from './screens/WarrantyHistoryScreen';
 import WarrantyClaimScreen from './screens/WarrantyClaimScreen';
 import WarrantyClaimListScreen from './screens/WarrantyClaimListScreen';
+import AccessScreen from './screens/AccessScreen';
+import CashbackScreen from './screens/CashbackScreen';
+import BillScreen from './screens/BillScreen';
 
 // import * as Linking from "expo-linking";
 
@@ -44,9 +47,17 @@ const Icon = createIconSetFromIcoMoon(
 // const prefix = Linking.makeUrl(baseUrl);
 
 const MainContainer = () => {
-    const [deepLinkData, setDeepLinkData] = useState<any>();
+    // const [deepLinkData, setDeepLinkData] = useState<any>();
     const [loading, setLoading] = useState(true);
-    const { user, setUser, setLocale, locale, darkMode, setDarkMode }:any = useContext(AuthContext)
+    const { 
+        user, 
+        setUser, 
+        setLocale, 
+        locale, 
+        darkMode, 
+        setDarkMode,
+        setOwnerAccess 
+    }:any = useContext(AuthContext)
 
     const i18n = new I18n({
         "en": en,
@@ -109,6 +120,19 @@ const MainContainer = () => {
         .catch(err => {
             console.error(err);
         })
+
+        SecureStore.getItemAsync('ownerAccess')
+        .then(ownerAccess => {
+            if (ownerAccess) {
+                setOwnerAccess(JSON.parse(ownerAccess));
+            } else {
+                setOwnerAccess(0);
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error(err);
+        })
     }, []);
 
     const Theme = darkMode ? {
@@ -160,17 +184,13 @@ const MainContainer = () => {
         },
       };
       
-
-
     if (loading) {
         return <Loading />
     }
     
     return (
         <PaperProvider theme={paperTheme}>
-            <NavigationContainer 
-                theme={Theme}
-            >
+            <NavigationContainer theme={Theme}>
                 <StatusBar
                     animated={true}
                     backgroundColor={primaryColor}
@@ -192,6 +212,7 @@ const MainContainer = () => {
                             <AccountStack.Screen name={i18n.t('login-screen')} component={LoginScreen} />
                     }
                     <AccountStack.Screen name={i18n.t('settings-screen')} component={SettingsScreen} />
+                    <AccountStack.Screen name={i18n.t('access-screen')} component={AccessScreen} />
                     <AccountStack.Screen name={i18n.t('change-language-screen')} component={ChangeLanguageScreen} />
                     <AccountStack.Screen name={i18n.t('change-theme-screen')} component={ChangeThemeScreen} />
                     <AccountStack.Screen name={i18n.t('change-password-screen')} component={ChangePasswordScreen} />
@@ -200,6 +221,8 @@ const MainContainer = () => {
                     <AccountStack.Screen name={i18n.t('warranty-history-screen')} component={WarrantyHistoryScreen} />
                     <AccountStack.Screen name={i18n.t('warranty-claim-screen')} component={WarrantyClaimScreen} />
                     <AccountStack.Screen name={i18n.t('warranty-claim-list-screen')} component={WarrantyClaimListScreen} />
+                    <AccountStack.Screen name={i18n.t('cashback-screen')} component={CashbackScreen} />
+                    <AccountStack.Screen name={i18n.t('bill-screen')} component={BillScreen} />
                     {/* <AccountStack.Screen name={i18n.t('warranties-history-screen')} component={WarrantiesHistoryScreen} /> */}
                 </AccountStack.Navigator>
             </NavigationContainer>

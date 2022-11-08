@@ -21,7 +21,6 @@ const CampaignScreen = ({route, navigation}:any) => {
     const [ loading, setLoading ] = useState(true);
     const [ campaign, setCampaign ] = useState<any>(null)
 
-
     const { campaignId } = route.params;
 
     const i18n = new I18n({

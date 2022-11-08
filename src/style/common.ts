@@ -1,5 +1,5 @@
 'use strict';
-import { primaryColor, secondaryColor } from '@config';
+import { primaryColor, primaryColorSurfaceDark, primaryColorSurfaceLight, secondaryColor } from '@config';
 import { StyleSheet } from 'react-native';
 
 const cs = StyleSheet.create({
@@ -76,6 +76,27 @@ const cs = StyleSheet.create({
         fontSize: 11,
     },
 
+    
+    tile: {
+        padding: 16,
+        margin: 8,
+        shadowColor: '#888',
+        borderRadius: 4,
+    },
+    tileTitle: {
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    tileSubtitle: {
+        fontWeight: '500',
+    },
+    tileContent: {
+        marginTop: 8,
+        fontWeight: 'bold',
+        fontSize: 36,
+        textTransform: 'uppercase',
+        color: primaryColor,
+    },
     
     tileLight: {
         marginHorizontal: 8,
@@ -188,6 +209,12 @@ const cs = StyleSheet.create({
     },
     textSubtitleDark: {
         color: '#ddd',
+    },
+    surfaceDark: {
+        backgroundColor: primaryColorSurfaceDark,
+    },
+    surfaceLight: {
+        backgroundColor: primaryColorSurfaceLight,
     },
     active: {
         borderColor: primaryColor

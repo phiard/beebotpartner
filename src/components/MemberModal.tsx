@@ -1,5 +1,4 @@
-import { Text, Image, View, StyleSheet, Pressable, Platform, ScrollView, TextInput, TouchableHighlight } from "react-native";
-import { Modal, Portal } from "react-native-paper";
+import { Text, Image, View, StyleSheet, Pressable, Platform, ScrollView, TextInput, Modal, TouchableHighlight, TouchableOpacity } from "react-native";
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import { backendUrl, primaryColor, underlayDark, underlayLight } from '@config';
 import { useState, useEffect } from 'react';
@@ -46,41 +45,49 @@ export default function MemberModal(props:any) {
     if(!filteredData) return <Loading />
 
     return (
-      <Portal>
-         <Modal 
-            visible={visible}
-            onDismiss={() => setVisible(false)}
-         >
-            <View style={{flex:1,justifyContent:'center',alignItems:'center', margin: 10,}}>
-               <View style={{flex:1, minHeight: 500, width:'100%',backgroundColor: darkMode ? '#333' : '#fff', borderRadius: 10,}}>
-                     <TextInput 
-                        style={[darkMode ? cs.textFieldDark : cs.textFieldLight, {borderTopLeftRadius: 10, borderTopRightRadius: 10, borderRadius:0, borderBottomWidth: 2, borderColor: darkMode ? underlayDark : underlayLight}]} 
-                        placeholder={i18n.t('type-member-name')}
-                        placeholderTextColor={underlayLight}
-                        onChangeText={text => filterMember(text)}
-                        />
-                     <ScrollView style={{width:'100%', flex:1,}}>
-                        {
-                           filteredData.map((member:any) => {
-                                 return (
-                                    <TouchableHighlight
-                                       key={member.id}
-                                       onPress={()=>onMemberChosen(member, setFieldValue)} 
-                                       underlayColor={darkMode ? underlayDark : underlayLight}>
-                                       <View style={{flexDirection:'row', borderBottomColor: darkMode ? '#111' : '#eee', borderBottomWidth: 1, padding: 20}}>
-                                             <Text style={[darkMode ? cs.textDark : cs.textLight,{flex:1,}]}>{member.phone}</Text>
-                                             <Text style={[darkMode ? cs.textDark : cs.textLight,{flex:2,}]}>{member.name}</Text>
-                                       </View>
-                                    </TouchableHighlight>
-                                 )
-                           })
-                        }
-                     </ScrollView>
+        <Modal 
+        visible={visible}
+        onDismiss={() => {setVisible(false);filterMember('');}}
+        onRequestClose={() => {setVisible(false);filterMember('');}}
+        onTouchCancel={() => {setVisible(false);filterMember('');}}
+        hardwareAccelerated={true}
+        animationType="slide"
+        transparent={true}
+        style={{flex:1,justifyContent:'center',alignItems:'center'}}
+        >
+        <TouchableOpacity 
+            onPress={() => {setVisible(false);filterMember('');}}
+            style={{flex:1, justifyContent:'center',alignItems:'center', margin: 10,}}
+        >
+            <View style={{minHeight: 500, maxHeight: 500, width:'90%',backgroundColor: darkMode ? '#333' : '#fff', borderRadius: 10, borderColor: darkMode ? '#111' : '#eee', borderWidth: 3,}}>
+                    <TextInput 
+                    style={[darkMode ? cs.textFieldDark : cs.textFieldLight, {borderTopLeftRadius: 10, borderTopRightRadius: 10, borderRadius:0, borderBottomWidth: 2, borderColor: darkMode ? underlayDark : underlayLight}]} 
+                    placeholder={i18n.t('type-member-name')}
+                    placeholderTextColor={underlayLight}
+                    onChangeText={text => filterMember(text)}
+                    />
+                    <ScrollView>
+                    {
+                        filteredData.map((member:any) => {
+                                return (
+                                <TouchableHighlight
+                                    key={member.id}
+                                    onPress={()=>onMemberChosen(member, setFieldValue)}
+                                    underlayColor={darkMode ? underlayDark : underlayLight}
+                                    >
+                                    <View style={{flexDirection:'row', borderBottomColor: darkMode ? '#111' : '#eee', borderBottomWidth: 1, padding: 20}}>
+                                            <Text style={[darkMode ? cs.textDark : cs.textLight,{flex:1,}]}>{member.phone}</Text>
+                                            <Text style={[darkMode ? cs.textDark : cs.textLight,{flex:2,}]}>{member.name}</Text>
+                                    </View>
+                                </TouchableHighlight>
+                                )
+                        })
+                    }
+                    </ScrollView>
 
-               </View>
             </View>
-         </Modal>
-      </Portal>
+        </TouchableOpacity>
+        </Modal>
     );
 }
 

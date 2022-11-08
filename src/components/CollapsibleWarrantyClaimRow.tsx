@@ -55,7 +55,7 @@ export default function CollapsibleWarrantyClaimRow(props:any) {
                         <View style={{flex:1, backgroundColor: darkMode ? '#333' : '#eee', borderRadius: 10, padding: 10,}}>
                             <View style={[cs.flexRow, {marginBottom: 5}]}>
                                 <Text style={{fontWeight:'700', fontSize: 20, flex:1}}>{row.product_name}</Text>
-                                <View style={{padding: 5, borderRadius:5, backgroundColor: primaryColor, flex:1}}><Text style={[{fontWeight:'500', color: '#000'}]}>{row.status}</Text></View>
+                                <View style={{padding: 5, borderRadius:5, backgroundColor: primaryColor, flex:1}}><Text style={[{fontWeight:'500', color: '#000'}]}>{row.status.trim()}</Text></View>
                             </View>
                             <View style={[{flexDirection:'row', justifyContent:'space-between', marginBottom: 5, paddingBottom: 5, borderBottomColor: darkMode ? underlayDark: underlayLight, borderBottomWidth: 1,}]}>
                                 <View style={{flex:1,flexDirection: 'row'}}>
