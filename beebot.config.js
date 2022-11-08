@@ -3,7 +3,7 @@ module.exports = {
     backendUrl: 'https://beebot.asia',
     appName: 'Beebot Partner',
     description: 'Internally Distributed App for Beebot Partners',
-    version: '1.0.3',
+    version: '1.0.4',
 
     currency: 'IDR',
     currencyStylized: 'Rp.',

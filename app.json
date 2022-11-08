@@ -2,7 +2,7 @@
   "expo": {
     "name": "Beebot Partner",
     "slug": "beebotpartner",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -40,18 +40,18 @@
       ]
     ],
     "ios": {
-      "buildNumber": "1.0.3",
+      "buildNumber": "1.0.4",
       "supportsTablet": true,
       "bundleIdentifier": "asia.beebot.partner",
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
         "NSLocationWhenInUseUsageDescription": "Your location is used to check closest store from you.",
         "NSPhotoLibraryUsageDescription": "Your chosen photo is being used for product installation proof.",
-        "NSCameraUsageDescription": "Your camera is being used to take a picture of product installation and scan beebot's product qr code for warranty input purposes.",
+        "NSCameraUsageDescription": "Your camera is being used to take a picture of product installation and scan beebot's product qr code for warranty input purposes."
       }
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

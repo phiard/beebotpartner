@@ -93,7 +93,7 @@ export default function CollapsibleBill(props:any) {
                         
                         <View style={[cs.flexRow, {flex:1}]}>
                             <Text>{currencyStylized}</Text>
-                            <Text style={{color:'#ee3', fontWeight:'500', fontSize: 20}}>{`${remaining.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}</Text>
+                            <Text style={{color:primaryColor, fontWeight:'500', fontSize: 20}}>{`${remaining.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}</Text>
                         </View>
                     </View>
                 </View>
